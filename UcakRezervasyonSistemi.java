@@ -9,11 +9,8 @@ public class UcakRezervasyonSistemi {
     
     // Tüm verileri tutacak listeler
     static ArrayList<Ucak> ucaklar = new ArrayList<Ucak>();
-    
     static ArrayList<Lokasyon> lokasyonlar = new ArrayList<Lokasyon>();
-    
     static ArrayList<Ucus> ucuslar = new ArrayList<Ucus>();
-    
     static ArrayList<Rezervasyon> rezervasyonlar = new ArrayList<Rezervasyon>();
     
     static Scanner input = new Scanner(System.in);
