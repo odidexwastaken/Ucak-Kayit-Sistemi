@@ -11,15 +11,6 @@ Java ile yazılmış basit bir konsol tabanlı uçak rezervasyon sistemi.
 - CSV dosyalarından veri okuma
 - Program yeniden başlatıldığında verilerin korunması
 
-## Kullanım
-
-### Programı Çalıştırma
-
-```bash
-javac UcakRezervasyonSistemi.java
-java UcakRezervasyonSistemi
-```
-
 ### Menü Seçenekleri
 
 1. **Uçuşları Listele** - Mevcut tüm uçuşları gösterir
