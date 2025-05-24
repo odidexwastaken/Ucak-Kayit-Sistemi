@@ -1,14 +1,21 @@
 import java.util.*;
 import java.io.*;
 
+
+
 // Ana program sınıfı
 public class UcakRezervasyonSistemi {
 
+    
     // Tüm verileri tutacak listeler
     static ArrayList<Ucak> ucaklar = new ArrayList<Ucak>();
+    
     static ArrayList<Lokasyon> lokasyonlar = new ArrayList<Lokasyon>();
+    
     static ArrayList<Ucus> ucuslar = new ArrayList<Ucus>();
+    
     static ArrayList<Rezervasyon> rezervasyonlar = new ArrayList<Rezervasyon>();
+    
     static Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -29,16 +36,21 @@ public class UcakRezervasyonSistemi {
 
             if (secim == 1) {
                 ucuslariListele();
-            } else if (secim == 2) {
+            } 
+            else if (secim == 2) {
                 rezervasyonYap();
-            } else if (secim == 3) {
+            } 
+            else if (secim == 3) {
                 rezervasyonlariGoster();
-            } else if (secim == 4) {
+            } 
+            else if (secim == 4) {
                 dosyayaKaydet();
-            } else if (secim == 5) {
+            } 
+            else if (secim == 5) {
                 System.out.println("Program Sonlandiriliyor...");
                 break;
-            } else {
+            } 
+            else {
                 System.out.println("Hatali secim! Tekrar deneyin.");
             }
         }
@@ -91,7 +103,8 @@ public class UcakRezervasyonSistemi {
             dosyaOkuyucu.close();
             System.out.println(ucaklar.size() + " ucak bilgisi okundu.");
 
-        } catch (Exception e) {
+        } 
+        catch (Exception e) {
             System.out.println("Ucak dosyasi okuma hatasi: " + e.getMessage());
         }
     }
@@ -100,6 +113,7 @@ public class UcakRezervasyonSistemi {
     static void lokasyonlariOku() {
         try {
             File dosya = new File("lokasyonlar.csv");
+            
             if (!dosya.exists()) {
                 System.out.println("lokasyonlar.csv dosyasi bulunamadi.");
                 return;
@@ -113,10 +127,12 @@ public class UcakRezervasyonSistemi {
             }
 
             while (dosyaOkuyucu.hasNextLine()) {
+                
                 String satir = dosyaOkuyucu.nextLine();
                 String[] bilgiler = satir.split(",");
 
                 if (bilgiler.length == 3) {
+                    
                     String ulke = bilgiler[0];
                     String sehir = bilgiler[1];
                     String havaalani = bilgiler[2];
@@ -124,14 +140,19 @@ public class UcakRezervasyonSistemi {
                     lokasyonlar.add(new Lokasyon(ulke, sehir, havaalani));
                 }
             }
+            
             dosyaOkuyucu.close();
             System.out.println(lokasyonlar.size() + " lokasyon bilgisi okundu.");
 
-        } catch (Exception e) {
+        } 
+        catch (Exception e) {
             System.out.println("Lokasyon dosyasi okuma hatasi: " + e.getMessage());
         }
     }
 
+
+
+    
     // Uçuşları dosyadan oku
     static void ucuslariOku() {
         try {
@@ -154,6 +175,7 @@ public class UcakRezervasyonSistemi {
             }
 
             while (dosyaOkuyucu.hasNextLine()) {
+                
                 String satir = dosyaOkuyucu.nextLine();
                 String[] bilgiler = satir.split(",");
 
@@ -188,8 +210,10 @@ public class UcakRezervasyonSistemi {
 
     // Rezervasyonları dosyadan oku
     static void rezervasyonlariOku() {
+        
         try {
             File dosya = new File("rezervasyonlar.csv");
+            
             if (!dosya.exists()) {
                 System.out.println("rezervasyonlar.csv dosyasi bulunamadi.");
                 return;
@@ -203,10 +227,12 @@ public class UcakRezervasyonSistemi {
             }
 
             while (dosyaOkuyucu.hasNextLine()) {
+                
                 String satir = dosyaOkuyucu.nextLine();
                 String[] bilgiler = satir.split(",");
 
                 if (bilgiler.length == 8) {
+                    
                     String rezervasyonNo = bilgiler[0];
                     String ad = bilgiler[1];
                     String soyad = bilgiler[2];
@@ -224,17 +250,21 @@ public class UcakRezervasyonSistemi {
                     }
                 }
             }
+            
             dosyaOkuyucu.close();
             System.out.println(rezervasyonlar.size() + " rezervasyon bilgisi okundu.");
 
-        } catch (Exception e) {
+        } 
+        catch (Exception e) {
             System.out.println("Rezervasyon dosyasi okuma hatasi: " + e.getMessage());
         }
     }
 
     // Şehir adına göre lokasyon bul
     static Lokasyon lokasyonBul(String sehir) {
+        
         for (int i = 0; i < lokasyonlar.size(); i++) {
+            
             if (lokasyonlar.get(i).sehir.equals(sehir)) {
                 return lokasyonlar.get(i);
             }
@@ -244,7 +274,9 @@ public class UcakRezervasyonSistemi {
 
     // Seri numarasına göre uçak bul
     static Ucak ucakBul(String seriNo) {
+        
         for (int i = 0; i < ucaklar.size(); i++) {
+            
             if (ucaklar.get(i).seriNo.equals(seriNo)) {
                 return ucaklar.get(i);
             }
@@ -254,7 +286,9 @@ public class UcakRezervasyonSistemi {
 
     // Uçuş koduna göre uçuş bul
     static Ucus ucusBul(String ucusKodu) {
+        
         for (int i = 0; i < ucuslar.size(); i++) {
+            
             if (ucuslar.get(i).ucusKodu.equals(ucusKodu)) {
                 return ucuslar.get(i);
             }
@@ -264,6 +298,7 @@ public class UcakRezervasyonSistemi {
 
     // Menüyü ekrana yazdır
     static void menuGoster() {
+        
         System.out.println("\n--- MENÜ ---");
         System.out.println("1. Ucuslari Listele");
         System.out.println("2. Rezervasyon Yap");
@@ -275,6 +310,7 @@ public class UcakRezervasyonSistemi {
 
     // Örnek verileri sisteme ekle
     static void ornekVerileriEkle() {
+        
         // Uçakları ekle
         ucaklar.add(new Ucak("Turkish Airlines", "A320", "TC-JKL", 180));
         ucaklar.add(new Ucak("Pegasus", "B737", "TC-MNO", 189));
@@ -292,6 +328,7 @@ public class UcakRezervasyonSistemi {
 
     // Örnek uçuşları ekle
     static void ornekUcuslariEkle() {
+        
         if (ucaklar.size() > 0 && lokasyonlar.size() > 0) {
             ucuslar.add(new Ucus("TK101", lokasyonlar.get(0), lokasyonlar.get(1), "15/06/2024", "10:30", ucaklar.get(0)));
             ucuslar.add(new Ucus("PC205", lokasyonlar.get(0), lokasyonlar.get(2), "16/06/2024", "14:20", ucaklar.get(1)));
@@ -302,6 +339,7 @@ public class UcakRezervasyonSistemi {
 
     // Tüm uçuşları listele
     static void ucuslariListele() {
+        
         System.out.println("\n=== MEVCUT UCUSLAR ===");
         for (int i = 0; i < ucuslar.size(); i++) {
             System.out.print((i + 1) + ". ");
@@ -311,6 +349,7 @@ public class UcakRezervasyonSistemi {
 
     // Yeni rezervasyon yap
     static void rezervasyonYap() {
+        
         System.out.println("\n=== REZERVASYON YAPMA ===");
 
         // Uçuşları göster
@@ -359,6 +398,7 @@ public class UcakRezervasyonSistemi {
 
     // Tüm rezervasyonları göster
     static void rezervasyonlariGoster() {
+        
         System.out.println("\n=== TUM REZERVASYONLAR ===");
 
         if (rezervasyonlar.size() == 0) {
@@ -374,6 +414,7 @@ public class UcakRezervasyonSistemi {
 
     // Verileri CSV dosyasına kaydet
     static void dosyayaKaydet() {
+        
         try {
             // Rezervasyonları kaydet
             PrintWriter dosya = new PrintWriter(new FileWriter("rezervasyonlar.csv"));
@@ -432,6 +473,7 @@ public class UcakRezervasyonSistemi {
 
 // Uçak bilgilerini tutan sınıf
 class Ucak {
+    
     String model;
     String marka;
     String seriNo;
@@ -439,6 +481,7 @@ class Ucak {
     boolean aktif;
 
     public Ucak(String marka, String model, String seriNo, int koltukKapasitesi) {
+        
         this.marka = marka;
         this.model = model;
         this.seriNo = seriNo;
@@ -451,8 +494,10 @@ class Ucak {
     }
 }
 
+
 // Lokasyon bilgilerini tutan sınıf
 class Lokasyon {
+    
     String ulke;
     String sehir;
     String havaalani;
@@ -470,8 +515,11 @@ class Lokasyon {
     }
 }
 
+
+
 // Uçuş bilgilerini tutan sınıf
 class Ucus {
+    
     String ucusKodu;
     Lokasyon nereden;
     Lokasyon nereye;
@@ -510,8 +558,12 @@ class Ucus {
     }
 }
 
+
+
+
 // Rezervasyon bilgilerini tutan sınıf
 class Rezervasyon {
+    
     String rezervasyonNo;
     Ucus ucus;
     String ad;
